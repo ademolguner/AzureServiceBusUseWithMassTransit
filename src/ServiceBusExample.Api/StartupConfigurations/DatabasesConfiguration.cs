@@ -1,11 +1,10 @@
-﻿using System; 
+﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBusExample.Api.Common;
 using ServiceBusExample.Infrastructure.Persistance;
-using Arch.EntityFrameworkCore.UnitOfWork;
-using ServiceBusExample.Infrastructure.Persistance.Configurations;
+using System;
 
 namespace ServiceBusExample.Api.StartupConfigurations
 {
@@ -33,7 +32,6 @@ namespace ServiceBusExample.Api.StartupConfigurations
             }
             else
             {
-                
                 services.AddDbContext<MasstransitExampleDbContext>((provider, options) =>
                 {
                     //options.SetSqlServerOptions(provider);

@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceBusExample.Api.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Controllers
 {

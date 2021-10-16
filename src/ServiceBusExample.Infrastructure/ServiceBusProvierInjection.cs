@@ -22,7 +22,6 @@ namespace ServiceBusExample.Infrastructure
 
         public static IServiceCollection AddServiceBusInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-
             // Reflection ile tüm assembly içerisinde inject edilen tüm türleri alıyoruz.
             var allTypes = Assembly.GetEntryAssembly()
                .GetTypes()
@@ -47,10 +46,9 @@ namespace ServiceBusExample.Infrastructure
             // ServiceBus app için kullanılacak CloudProvider connection bilgisi (appsettings.json) dosyasından okuyacağız.
             _connectionString = configuration.GetValue<string>("ServiceBus:ConnectionString");
 
-
             /* _consumerTypes   değişkeni ile  Inject edilen türler içerisinden Consumer olanları ayıklamak için attribute altyapısını kullanacağız.
                Bu bize nasıl bir kolaylık sağlayacak? İlerde değineceğiz ancak kısaca tip güvenliği ve kod tekrarından kaçınmış olacağız
-               Olusturulan her consumer için  tek tek yazmamıs olacağız.  
+               Olusturulan her consumer için  tek tek yazmamıs olacağız.
                     x.Consumer<CategoryConsumer>();
                     x.Consumer<PostConsumer>();
                     x.Consumer<TagConsumer>();
@@ -64,7 +62,6 @@ namespace ServiceBusExample.Infrastructure
                .Select(t => (Class: t, Attribute: t.GetCustomAttribute<MessageConsumerAttribute>(false)))
                .Where(t => t.Attribute?.GetType() == typeof(MessageConsumerAttribute))
                .ToArray();
-
 
             services.AddMassTransit(x =>
             {
@@ -192,4 +189,3 @@ namespace ServiceBusExample.Infrastructure
         }
     }
 }
-

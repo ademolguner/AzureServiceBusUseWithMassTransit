@@ -1,12 +1,12 @@
-﻿using ServiceBusExample.Application.Common.Providers;
-using System;
-using System.Threading.Tasks;
-using NewRelic.Api.Agent;
-using System.Threading;
-using MassTransit;
+﻿using MassTransit;
 using MassTransit.Azure.ServiceBus.Core;
-using ServiceBusExample.Domain.Interfaces;
+using NewRelic.Api.Agent;
+using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Domain.Enums;
+using ServiceBusExample.Domain.Interfaces;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ServiceBusExample.Infrastructure.Providers
 {

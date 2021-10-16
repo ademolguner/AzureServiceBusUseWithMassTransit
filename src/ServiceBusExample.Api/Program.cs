@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
-using ServiceBusExample.Infrastructure.Persistance;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api
@@ -22,7 +18,6 @@ namespace ServiceBusExample.Api
         {
             var host = CreateHostBuilder(args).Build();
             await host.RunAsync();
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

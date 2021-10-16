@@ -8,6 +8,7 @@ namespace ServiceBusExample.Domain.Common.Attributes
     {
         private readonly string _name;
         public MessageTypes MessageType { get; }
+
         public string Name
         {
             get

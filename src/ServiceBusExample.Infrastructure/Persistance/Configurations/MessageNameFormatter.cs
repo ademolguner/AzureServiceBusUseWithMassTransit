@@ -1,11 +1,6 @@
 ﻿using MassTransit.Topology;
 using ServiceBusExample.Domain.Common.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceBusExample.Infrastructure.Persistance.Configurations
 {

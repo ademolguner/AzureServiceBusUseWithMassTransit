@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ServiceBusExample.Api.StartupConfigurations;
+using ServiceBusExample.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +28,10 @@ namespace ServiceBusExample.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ServiceBusExample.Api", Version = "v1" });
-            });
+            services.CheckAndConfigurations(Configuration);
+            services.SwaggerConfigureServices();
+            services.AddServiceBusInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,9 +40,9 @@ namespace ServiceBusExample.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ServiceBusExample.Api v1"));
             }
+
+            app.SwaggerConfigure();
 
             app.UseHttpsRedirection();
 

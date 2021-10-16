@@ -16,6 +16,9 @@
     <WarningsAsErrors>NU1605;</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Common\CustomElasticsearchJsonFormatter.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
@@ -39,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceBusExample.Infrastructure\ServiceBusExample.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Consumers\" />
   </ItemGroup>
 </Project>
 

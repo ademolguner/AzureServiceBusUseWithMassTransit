@@ -30,6 +30,109 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\ServiceBusExample.Domain.csproj": {
+                "projectPath": "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\ServiceBusExample.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "CorrelationId": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "EFCore.BulkExtensions": {
+              "target": "Package",
+              "version": "[3.4.9, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[9.5.3, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.UnitOfWork": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "NewRelic.Agent.Api": {
+              "target": "Package",
+              "version": "[8.39.1, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.2.8, )"
+            },
+            "Z.EntityFramework.Plus.EFCore": {
+              "target": "Package",
+              "version": "[5.1.25, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\ServiceBusExample.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\ServiceBusExample.Domain.csproj",
+        "projectName": "ServiceBusExample.Domain",
+        "projectPath": "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\ServiceBusExample.Domain.csproj",
+        "packagesPath": "C:\\Users\\ademo\\.nuget\\packages\\",
+        "outputPath": "D:\\PROJELERIM\\SOURCECONTROL\\GIT\\AzureServiceBusUseWithMassTransit\\src\\ServiceBusExample.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ademo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -42,6 +145,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

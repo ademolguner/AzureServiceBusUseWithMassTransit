@@ -1,4 +1,5 @@
 ﻿using ServiceBusExample.Domain.Common.Attributes;
+using ServiceBusExample.Domain.Entities;
 using ServiceBusExample.Domain.Extensions;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Common.MessageModels
 {
-    [MessageName(Domain.Enums.MessageTypes.Queue, MessageConsts.CategoryDelete)]
-    public class CategoryDeleteEventValue
+    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.PostCreate)]
+    public class CreatedPostEventValue
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime Timestamp { get; set; } = DateTime.Now;
-        public IEnumerable<CategoryDeleteEventValues> Values { get; set; }
+        public IEnumerable<CreatedPostEventValues> Values { get; set; }
+
     }
 
-    public class CategoryDeleteEventValues
+    public class CreatedPostEventValues
     {
-        public string Id { get; set; }
+        public Post Post { get; set; }
     }
 }

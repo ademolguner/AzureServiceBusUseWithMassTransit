@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using MediatR;
 using ServiceBusExample.Application.Common.MessageModels;
 using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Enums;
@@ -11,11 +12,19 @@ using System.Threading.Tasks;
 namespace ServiceBusExample.Api.Consumers
 {
 
-    [MessageConsumer(MessageTypes.Topic, MessageConsts.MailSend, MessageConsts.SubscritionName)]
-    public class PostMailConsumer : IConsumer<MailSendEventValue>
+    [MessageConsumer(MessageTypes.Topic, MessageConsts.PostCreate, MessageConsts.SubscritionName)]
+    public class PostMailConsumer : IConsumer<CreatedPostEventValue>
     {
-        public Task Consume(ConsumeContext<MailSendEventValue> context)
+        private readonly IMediator _mediator;
+
+        public PostMailConsumer(IMediator mediator)
         {
+            _mediator = mediator;
+        }
+
+        public Task Consume(ConsumeContext<CreatedPostEventValue> context)
+        {
+            _mediator.Send()
             throw new NotImplementedException();
         }
     }

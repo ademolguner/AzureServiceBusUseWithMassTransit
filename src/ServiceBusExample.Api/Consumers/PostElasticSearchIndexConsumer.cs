@@ -12,11 +12,14 @@ namespace ServiceBusExample.Api.Consumers
 {
     
 
-    [MessageConsumer(MessageTypes.Topic, MessageConsts.ElasticIndex, MessageConsts.SubscritionName,"ElasticSearch")]
-    public class PostElasticSearchIndexConsumer : IConsumer<MailSendEventValue>
+    [MessageConsumer(MessageTypes.Topic, MessageConsts.PostCreate, MessageConsts.SubscritionName)]
+    public class PostElasticSearchIndexConsumer : IConsumer<CreatedPostEventValue>
     {
-        public Task Consume(ConsumeContext<MailSendEventValue> context)
+        public Task Consume(ConsumeContext<CreatedPostEventValue> context)
         {
+            // buradaki iş kuralı değişkenlik gösterebilir. Ben Post Id ile  post bilgilerini çekip
+            // elasticsearch ile nasıl bir mapping yapıp indexleneceği değişkenlik gösterir
+
             throw new NotImplementedException();
         }
     }

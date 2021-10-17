@@ -27,16 +27,15 @@ namespace ServiceBusExample.Application.Business.Categories.Queries
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryContext _repositoryContext;
-        private readonly IMediator _mediator; 
 
-        public GetCategoryQueryHandler(IMapper mapper, IRepositoryContext repositoryContext, IMediator mediator)
+        public GetCategoryQueryHandler(IMapper mapper, IRepositoryContext repositoryContext)
         {
             _mapper = mapper;
             _repositoryContext = repositoryContext;
-            _mediator = mediator;
         }
 
         [Obsolete]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1041:Provide ObsoleteAttribute message", Justification = "<Pending>")]
         public async Task<GetCategoryQueryOutput> Handle(GetCategoryQueryInput request, CancellationToken cancellationToken)
         {
             var query = _repositoryContext.CategoryRepository.GetAll().Where(c => c.Id == request.CategoryId);

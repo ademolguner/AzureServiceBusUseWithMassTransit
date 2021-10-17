@@ -3,12 +3,13 @@ using ServiceBusExample.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Common.MessageModels
 {
-    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.MailSend)]
+    [MessageName(Domain.Enums.MessageTypes.Queue, MessageConsts.MailSend)]
     public class MailSendEventValue
     {
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -18,6 +19,12 @@ namespace ServiceBusExample.Application.Common.MessageModels
 
     public class MailSendEventValues
     {
-        public string Id { get; set; }
+        public string Title { get; set; }
+        public string MailBody { get; set; }
+        public string[] To { get; set; }
+        public string[] Cc { get; set; }
+        public string[] Bcc { get; set; }
+        public Attachment[] Attachments { get; set; }
+        public bool BodyIsHtml { get; set; }
     }
 }

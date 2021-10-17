@@ -11,16 +11,10 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Consumers
 {
-    [MessageConsumer(MessageTypes.Topic, MessageConsts.CategoryDelete, MessageConsts.SubscritionName)]
+    [MessageConsumer(MessageTypes.Queue, MessageConsts.CategoryDelete, MessageConsts.SubscritionName)]
     public class CategoryDeleteEventConsumer : IConsumer<CategoryDeleteEventValue>
     {
-        private readonly IMediator _mediator;
-
-        public CategoryDeleteEventConsumer(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
+        
         public Task Consume(ConsumeContext<CategoryDeleteEventValue> context)
         {
             // category delete işlemi ve sonrasına ait iş kuralları yazılabilir.

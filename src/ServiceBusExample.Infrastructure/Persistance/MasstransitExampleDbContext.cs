@@ -11,5 +11,6 @@ namespace ServiceBusExample.Infrastructure.Persistance
         }
 
         public Category Category { get; set; }
+        public Post Post { get; set; }
     }
 }

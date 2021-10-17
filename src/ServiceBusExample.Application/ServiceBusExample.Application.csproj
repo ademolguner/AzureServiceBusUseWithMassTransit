@@ -21,6 +21,10 @@
   </ItemGroup>  
   <ItemGroup>
     <ProjectReference Include="..\ServiceBusExample.Domain\ServiceBusExample.Domain.csproj" />
+  </ItemGroup>  
+  <ItemGroup>
+    <Folder Include="Business\Others\Mailing\Dtos\" />
+    <Folder Include="Business\Others\Mailing\Queries\" />
   </ItemGroup>
 
 </Project>

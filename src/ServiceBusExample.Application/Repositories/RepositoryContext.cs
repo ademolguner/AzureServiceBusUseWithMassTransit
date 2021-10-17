@@ -11,6 +11,8 @@ namespace ServiceBusExample.Application.Repositories
     {
         public ICategoryRepository CategoryRepository
             => GetRepository<ICategoryRepository>();
+        public IPostRepository PostRepository
+          => GetRepository<IPostRepository>();
 
         TRepo GetRepository<TRepo>() where TRepo : class;
 

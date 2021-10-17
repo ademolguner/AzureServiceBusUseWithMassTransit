@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceBusExample.Application.Business.Posts.Dtos
+namespace ServiceBusExample.Application.Business.Articles.Dtos
 {
-    public class CreatePostDto
+    public class CreateArticleDto
     {
         public string Title { get; set; }
         public string Description { get; set; }

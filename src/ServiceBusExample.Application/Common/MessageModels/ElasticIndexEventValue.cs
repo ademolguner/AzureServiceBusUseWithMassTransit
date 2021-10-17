@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Common.MessageModels
 {
-    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.PostCreate)]
+    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.ArticleCreate)]
     public class ElasticIndexEventValue
     {
         public Guid Id { get; set; } = Guid.NewGuid();

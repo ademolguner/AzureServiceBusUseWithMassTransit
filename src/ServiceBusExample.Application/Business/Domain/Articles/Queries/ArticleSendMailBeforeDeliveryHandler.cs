@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceBusExample.Application.Business.Domain.Posts.Queries
+namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 {
-    class ArticlePostBeforeDeliveryHandler
+    class ArticleArticleBeforeDeliveryHandler
     {
     }
 }

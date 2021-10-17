@@ -50,11 +50,11 @@ namespace ServiceBusExample.Infrastructure
                Bu bize nasıl bir kolaylık sağlayacak? İlerde değineceğiz ancak kısaca tip güvenliği ve kod tekrarından kaçınmış olacağız
                Olusturulan her consumer için  tek tek yazmamıs olacağız.
                     x.Consumer<CategoryConsumer>();
-                    x.Consumer<PostConsumer>();
+                    x.Consumer<ArticleConsumer>();
                     x.Consumer<TagConsumer>();
                     x.Consumer<CommentConsumer>();
                     x.Consumer<LikeConsumer>();
-                    x.Consumer<PostDeleteConsumer>();
+                    x.Consumer<ArticleDeleteConsumer>();
                     x.Consumer<CategoryUpdateConsumer>();
 
             */

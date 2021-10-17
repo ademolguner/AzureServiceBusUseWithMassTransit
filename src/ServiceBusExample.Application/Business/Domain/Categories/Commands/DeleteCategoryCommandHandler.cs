@@ -43,7 +43,7 @@ namespace ServiceBusExample.Application.Business.Categories.Commands
             var model = _mapper.Map<Category>(item.GetCategoryResultDto);
             _repositoryContext.CategoryRepository.Delete(model.Id);
            
-            // ek işlemler yapılabilir. post pasife cek
+            // ek işlemler yapılabilir. Article pasife cek
             return new DeleteCategoryCommandOutput { };
         }
     }

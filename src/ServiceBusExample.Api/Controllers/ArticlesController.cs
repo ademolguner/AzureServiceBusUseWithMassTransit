@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBusExample.Api.Common;
-using ServiceBusExample.Application.Business.Posts.Commands;
+using ServiceBusExample.Application.Business.Articles.Commands;
 using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Controllers
@@ -14,15 +14,15 @@ namespace ServiceBusExample.Api.Controllers
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public class PostsController : ApiControllerBase
+    public class ArticlesController : ApiControllerBase
     {
 
         [HttpPost]
         [Route("/api/[controller]")]
-        public async Task<ActionResult<CreatePostCommandOutput>> Create(
-            [FromBody] CreatePostCommandInput createPostCommandInput)
+        public async Task<ActionResult<CreateArticleCommandOutput>> Create(
+            [FromBody] CreateArticleCommandInput createArticleCommandInput)
         {
-            var result = await Mediator.Send(createPostCommandInput);
+            var result = await Mediator.Send(createArticleCommandInput);
             return Ok(result);
         }
     }

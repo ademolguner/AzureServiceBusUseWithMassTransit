@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Common.MessageModels
 {
-    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.PostCreate)]
-    public class CreatedPostEventValue
+    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.ArticleCreate)]
+    public class CreatedArticleEventValue
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime Timestamp { get; set; } = DateTime.Now;
-        public IEnumerable<CreatedPostEventValues> Values { get; set; }
+        public IEnumerable<CreatedArticleEventValues> Values { get; set; }
 
     }
 
-    public class CreatedPostEventValues
+    public class CreatedArticleEventValues
     {
-        public Post Post { get; set; }
+        public Article Article { get; set; }
     }
 }

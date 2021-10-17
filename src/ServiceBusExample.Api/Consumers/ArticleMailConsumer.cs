@@ -12,19 +12,18 @@ using System.Threading.Tasks;
 namespace ServiceBusExample.Api.Consumers
 {
 
-    [MessageConsumer(MessageTypes.Topic, MessageConsts.PostCreate, MessageConsts.SubscritionName)]
-    public class PostMailConsumer : IConsumer<CreatedPostEventValue>
+    [MessageConsumer(MessageTypes.Topic, MessageConsts.ArticleCreate, MessageConsts.SubscritionName)]
+    public class ArticleMailConsumer : IConsumer<CreatedArticleEventValue>
     {
         private readonly IMediator _mediator;
-
-        public PostMailConsumer(IMediator mediator)
+        public ArticleMailConsumer(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        public Task Consume(ConsumeContext<CreatedPostEventValue> context)
+        public Task Consume(ConsumeContext<CreatedArticleEventValue> context)
         {
-            _mediator.Send()
+            
             throw new NotImplementedException();
         }
     }

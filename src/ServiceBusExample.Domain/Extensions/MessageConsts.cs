@@ -10,7 +10,7 @@ namespace ServiceBusExample.Domain.Extensions
     {
         public const string SubscritionName = "ServiceBusExampleSubscriptionName";
         public const string MailSend = "mail-send";
-        public const string PostCreate = "post-create";
+        public const string ArticleCreate = "article-create";
         public const string CategoryDelete = "category-delete";
     }
 }

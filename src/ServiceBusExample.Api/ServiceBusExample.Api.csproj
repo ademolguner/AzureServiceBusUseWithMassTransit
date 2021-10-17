@@ -43,9 +43,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ServiceBusExample.Infrastructure\ServiceBusExample.Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Consumers\" />
-  </ItemGroup>
 </Project>
 
 

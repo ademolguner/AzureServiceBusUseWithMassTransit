@@ -24,8 +24,7 @@ namespace ServiceBusExample.Infrastructure.Providers
         }
 
         [Trace]
-        public async Task Send<T>(IMessage<T> message, CancellationToken cancellationToken)
-             where T : class
+        public async Task Send<T>(IMessage<T> message, CancellationToken cancellationToken) where T : class
         {
             switch (message)
             {
@@ -44,21 +43,18 @@ namespace ServiceBusExample.Infrastructure.Providers
             }
         }
 
-        private async Task SendToTopic<T>(IMessage<T> topic, CancellationToken cancellationToken)
-            where T : class
+        private async Task SendToTopic<T>(IMessage<T> topic, CancellationToken cancellationToken) where T : class
         {
             await _publishEndpoint.Publish(topic.Body, SetContextSettings(topic), cancellationToken);
         }
 
-        private async Task SendToQueue<T>(IMessage<T> queue, CancellationToken cancellationToken)
-            where T : class
+        private async Task SendToQueue<T>(IMessage<T> queue, CancellationToken cancellationToken) where T : class
         {
             var endPoint = await _endpointProvider.GetSendEndpoint(queue.GetMessageAddress());
             await endPoint.Send(queue.Body, SetContextSettings(queue), cancellationToken);
         }
 
-        private static Action<SendContext<T>> SetContextSettings<T>(IMessage<T> message)
-             where T : class
+        private static Action<SendContext<T>> SetContextSettings<T>(IMessage<T> message) where T : class
         {
             return context =>
             {

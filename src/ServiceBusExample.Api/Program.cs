@@ -10,10 +10,6 @@ namespace ServiceBusExample.Api
 {
     public class Program
     {
-        protected Program()
-        {
-        }
-
         public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -33,4 +29,4 @@ namespace ServiceBusExample.Api
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
-}
+} 

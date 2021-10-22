@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiceBusExample.Application.Common;
 using ServiceBusExample.Domain.Entities;
+using System.Reflection;
 
 namespace ServiceBusExample.Infrastructure.Persistance
 {
@@ -12,5 +13,11 @@ namespace ServiceBusExample.Infrastructure.Persistance
 
         public Category Category { get; set; }
         public Article Article { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -3,10 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Common\IMasstransitExampleDbContextFactory.cs" />
-  </ItemGroup>
 <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
@@ -23,8 +19,9 @@
     <ProjectReference Include="..\ServiceBusExample.Domain\ServiceBusExample.Domain.csproj" />
   </ItemGroup>  
   <ItemGroup>
-    <Folder Include="Business\Others\Mailing\Dtos\" />
     <Folder Include="Business\Others\Mailing\Queries\" />
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Common\Extensions\Domain\" />
   </ItemGroup>
 
 </Project>

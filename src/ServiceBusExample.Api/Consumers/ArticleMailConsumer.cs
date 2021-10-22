@@ -1,12 +1,12 @@
-﻿using MassTransit;
+﻿using AutoMapper;
+using MassTransit;
 using MediatR;
+using ServiceBusExample.Application.Business.Articles.Dtos;
+using ServiceBusExample.Application.Business.Domain.Articles.Queries;
 using ServiceBusExample.Application.Common.MessageModels;
 using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Consumers
@@ -16,15 +16,21 @@ namespace ServiceBusExample.Api.Consumers
     public class ArticleMailConsumer : IConsumer<CreatedArticleEventValue>
     {
         private readonly IMediator _mediator;
-        public ArticleMailConsumer(IMediator mediator)
+        private readonly IMapper _mapper;
+        public ArticleMailConsumer(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
-        public Task Consume(ConsumeContext<CreatedArticleEventValue> context)
+        public async Task Consume(ConsumeContext<CreatedArticleEventValue> context)
         {
-            
-            throw new NotImplementedException();
+            await _mediator.Send(
+                new ArticleMailSenBeforeDeliveryInput
+                    { 
+                        CreateArticleDto = _mapper.Map<CreateArticleDto>(context.Message.Values) 
+                    }
+              , context.CancellationToken);
         }
     }
 }

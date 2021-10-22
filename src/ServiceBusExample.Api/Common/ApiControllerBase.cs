@@ -10,7 +10,9 @@ namespace ServiceBusExample.Api.Common
     {
         private IMediator _mediator;
 
-        protected IMediator Mediator
-            => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+        protected IMediator GetMediator()
+        {
+            return _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+        }
     }
 }

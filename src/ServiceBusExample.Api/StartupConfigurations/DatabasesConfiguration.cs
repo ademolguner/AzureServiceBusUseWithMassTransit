@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBusExample.Api.Common;
+using ServiceBusExample.Application.Common;
 using ServiceBusExample.Infrastructure.Persistance;
+using ServiceBusExample.Infrastructure.Persistance.Configurations;
 using System;
 
 namespace ServiceBusExample.Api.StartupConfigurations
@@ -14,7 +16,8 @@ namespace ServiceBusExample.Api.StartupConfigurations
         {
             ConfigurationDbCheckOption(services, configuration);
             services.AddUnitOfWork<MasstransitExampleDbContext>();
-            services.AddScoped(provider => provider.GetService<MasstransitExampleDbContext>());
+            services.AddScoped<IMasstransitExampleDbContext>(provider => provider.GetService<MasstransitExampleDbContext>());
+
             return services;
         }
 
@@ -32,9 +35,10 @@ namespace ServiceBusExample.Api.StartupConfigurations
             }
             else
             {
-                services.AddDbContext<MasstransitExampleDbContext>((provider, options) =>
+                var provider = services.BuildServiceProvider();
+                services.AddDbContext<MasstransitExampleDbContext>((options) =>
                 {
-                    //options.SetSqlServerOptions(provider);
+                    options.SetSqlServerOptions(provider);
                 });
             }
         }

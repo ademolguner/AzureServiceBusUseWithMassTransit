@@ -1,15 +1,26 @@
+using CorrelationId;
+using CorrelationId.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ServiceBusExample.Api.Middlewares;
 using ServiceBusExample.Api.StartupConfigurations;
+using ServiceBusExample.Application;
+using ServiceBusExample.Application.Common;
+using ServiceBusExample.Application.Repositories.Domain;
 using ServiceBusExample.Infrastructure;
+using ServiceBusExample.Infrastructure.Persistance;
+using System;
+using System.ComponentModel;
+using System.Linq;
 
 namespace ServiceBusExample.Api
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,10 +31,18 @@ namespace ServiceBusExample.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.CheckAndConfigurations(Configuration);
-            services.SwaggerConfigureServices();
             services.AddServiceBusInfrastructure(Configuration);
+            services.AddApplication();
+            services.AddCors(Configuration);
+            services.SwaggerConfigureServices();
+            services.RegisterAllDependencies();
+             
+
+            services.CheckAndConfigurations(Configuration);
+            services.AddHttpContextAccessor();
+            services.AddControllers()
+            .ConfigureApiBehaviorOptions(options => { options.SuppressMapClientErrors = true; });
+            services.AddDefaultCorrelationId();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,19 +52,19 @@ namespace ServiceBusExample.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.SwaggerConfigure();
-
+            app.UseCorrelationId();
             app.UseHttpsRedirection();
-
+            app.ConfigureCustomMiddlewares();
             app.UseRouting();
-
+            app.UseCorsConfig();
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.SettingsEndpoints(env);
         }
     }
 }

@@ -24,9 +24,7 @@ namespace ServiceBusExample.Application.Common.Mappings
                 typeof(IMapTo<>),
                 typeof(IMapFrom<>),
                 typeof(IMapBoth<>),
-                typeof(IMapBoth<,>),
-                typeof(IMessageModelMap<,>),
-                typeof(IEntityMessageModelMap<,,>)
+                typeof(IMapBoth<,>)
             };
             var types = assembly.GetExportedTypes()
                 .Where(t => t.GetInterfaces()

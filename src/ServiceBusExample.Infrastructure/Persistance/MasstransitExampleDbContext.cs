@@ -11,7 +11,6 @@ namespace ServiceBusExample.Infrastructure.Persistance
         {
         }
 
-        public Category Category { get; set; }
         public Article Article { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

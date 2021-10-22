@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 {
 
-    public class ArticleMailSenBeforeDeliveryInput : IRequest<ArticleMailSenBeforeDeliveryOutput>
+    public class ArticleMailSenBeforeDeliveryQuery : IRequest<ArticleMailSenBeforeDeliveryOutput>
     {
         public CreateArticleDto CreateArticleDto { get; set; }
     }
@@ -27,7 +27,7 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 
 
 
-    public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryInput, ArticleMailSenBeforeDeliveryOutput>
+    public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryQuery, ArticleMailSenBeforeDeliveryOutput>
     {
 
         private readonly IMapper _mapper;
@@ -44,8 +44,9 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
         }
 
 
-        public Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryInput request, CancellationToken cancellationToken)
+        public Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryQuery request, CancellationToken cancellationToken)
         {
+            //İş kuralları ile ilgili kod alanı.
             throw new NotImplementedException();
         }
     }

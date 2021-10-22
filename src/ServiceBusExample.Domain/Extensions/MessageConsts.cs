@@ -11,6 +11,5 @@ namespace ServiceBusExample.Domain.Extensions
         public const string SubscritionName = "servicebus-example-subscription-name";
         public const string MailSend = "mail-send";
         public const string ArticleCreate = "article-create";
-        public const string CategoryDelete = "category-delete";
     }
 }

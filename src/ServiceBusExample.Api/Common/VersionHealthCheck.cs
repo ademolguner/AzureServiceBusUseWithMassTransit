@@ -17,7 +17,8 @@ namespace ServiceBusExample.Api.Common
             var assemblyVersion = assembly?.GetName().Version?.ToString();
             var data = new Dictionary<string, object> {
                 { "BuildVersion", assemblyVersion },
-                { "EnvironmentVariable", ver }
+                { "EnvironmentVariable", ver },
+                { "ASPNETCORE_ENVIRONMENT", Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "NONE" }
             };
             var result = HealthCheckResult.Healthy("API version info", data);
             return Task.FromResult(result);

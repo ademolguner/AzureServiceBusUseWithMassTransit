@@ -26,7 +26,7 @@ namespace ServiceBusExample.Api.Consumers
         public async Task Consume(ConsumeContext<CreatedArticleEventValue> context)
         {
             await _mediator.Send(
-                new ArticleMailSenBeforeDeliveryInput
+                new ArticleMailSenBeforeDeliveryQuery
                     { 
                         CreateArticleDto = _mapper.Map<CreateArticleDto>(context.Message.Values) 
                     }

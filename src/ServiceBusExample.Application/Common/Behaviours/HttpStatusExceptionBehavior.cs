@@ -30,7 +30,7 @@ namespace ServiceBusExample.Application.Common.Behaviours
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
+        private static async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
         {
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = GetStatusCode(ex);

@@ -9,8 +9,6 @@ namespace ServiceBusExample.Application.Repositories
 {
     public interface IRepositoryContext
     {
-        public ICategoryRepository CategoryRepository
-            => GetRepository<ICategoryRepository>();
         public IArticleRepository ArticleRepository
           => GetRepository<IArticleRepository>();
 

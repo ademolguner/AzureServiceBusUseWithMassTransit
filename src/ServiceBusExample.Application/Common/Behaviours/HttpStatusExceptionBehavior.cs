@@ -1,4 +1,4 @@
-﻿using HepsiExpress.StudyCase.Api.Application.Common.Models; 
+﻿using HepsiExpress.StudyCase.Api.Application.Common.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,11 +12,13 @@ namespace ServiceBusExample.Application.Common.Behaviours
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<HttpStatusExceptionBehavior> _logger;
+
         public HttpStatusExceptionBehavior(RequestDelegate next, ILogger<HttpStatusExceptionBehavior> logger)
         {
             _logger = logger;
             _next = next;
         }
+
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try

@@ -1,10 +1,5 @@
 ﻿using ServiceBusExample.Application.Common.Mappings;
 using ServiceBusExample.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Business.Articles.Dtos
 {

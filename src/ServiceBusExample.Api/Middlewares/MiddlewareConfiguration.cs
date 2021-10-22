@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using ServiceBusExample.Application.Common.Behaviours;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Middlewares
 {

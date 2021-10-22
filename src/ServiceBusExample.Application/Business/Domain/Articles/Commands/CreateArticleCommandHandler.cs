@@ -52,7 +52,7 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
 
             // servicebus send işlemi
             await _messageBrokerProvider.Send(GenericMessage.Create(createdArticleEventModel), cancellationToken);
-             
+
             return new CreateArticleCommandOutput
             {
                 ArticleDto = _mapper.Map<ArticleDto>(createdArticle)

@@ -8,19 +8,12 @@ using Microsoft.Extensions.Hosting;
 using ServiceBusExample.Api.Middlewares;
 using ServiceBusExample.Api.StartupConfigurations;
 using ServiceBusExample.Application;
-using ServiceBusExample.Application.Common;
-using ServiceBusExample.Application.Repositories.Domain;
 using ServiceBusExample.Infrastructure;
-using ServiceBusExample.Infrastructure.Persistance;
-using System;
-using System.ComponentModel;
-using System.Linq;
 
 namespace ServiceBusExample.Api
 {
     public class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,7 +29,6 @@ namespace ServiceBusExample.Api
             services.AddCors(Configuration);
             services.SwaggerConfigureServices();
             services.RegisterAllDependencies();
-             
 
             services.CheckAndConfigurations(Configuration);
             services.AddHttpContextAccessor();

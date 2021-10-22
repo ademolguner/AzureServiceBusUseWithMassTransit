@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBusExample.Api.Common;
 using ServiceBusExample.Application.Business.Articles.Commands;
@@ -10,10 +9,9 @@ namespace ServiceBusExample.Api.Controllers
     [ApiVersion("1.0")]
     [Produces("application/json")]
     [Consumes("application/json")]
-    [Route("/api/[controller]")] 
+    [Route("/api/[controller]")]
     public class ArticlesController : ApiControllerBase
     {
-        
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Net;
 
 namespace HepsiExpress.StudyCase.Api.Application.Common.Models
 {
@@ -13,6 +12,7 @@ namespace HepsiExpress.StudyCase.Api.Application.Common.Models
         {
             return JsonConvert.SerializeObject(this);
         }
+
         internal static ResponseException Create(Exception ex)
         {
             return new ResponseException

@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Consumers
 {
-
     [MessageConsumer(MessageTypes.Topic, MessageConsts.ArticleCreate, MessageConsts.SubscritionName)]
     public class ArticleMailConsumer : IConsumer<CreatedArticleEventValue>
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+
         public ArticleMailConsumer(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
@@ -27,9 +27,9 @@ namespace ServiceBusExample.Api.Consumers
         {
             await _mediator.Send(
                 new ArticleMailSenBeforeDeliveryQuery
-                    { 
-                        CreateArticleDto = _mapper.Map<CreateArticleDto>(context.Message.Values) 
-                    }
+                {
+                    CreateArticleDto = _mapper.Map<CreateArticleDto>(context.Message.Values)
+                }
               , context.CancellationToken);
         }
     }

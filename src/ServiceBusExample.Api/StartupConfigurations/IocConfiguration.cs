@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ServiceBusExample.Domain.Common.DI;
 
 namespace ServiceBusExample.Api.StartupConfigurations
@@ -7,7 +6,7 @@ namespace ServiceBusExample.Api.StartupConfigurations
     public static class IocConfiguration
     {
         public static void RegisterAllDependencies(this IServiceCollection services)
-        {  
+        {
             services.Scan(scan =>
             {
                 scan.FromApplicationDependencies(a => a.GetName().Name.StartsWith("ServiceBusExample"))

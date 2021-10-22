@@ -29,4 +29,4 @@ namespace ServiceBusExample.Api
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
-} 
+}

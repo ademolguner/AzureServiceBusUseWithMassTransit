@@ -5,6 +5,6 @@ namespace ServiceBusExample.Application.Common
 {
     public interface IMasstransitExampleDbContext : IDisposable
     {
-        public Article  Article { get; set; }
+        public Article Article { get; set; }
     }
 }

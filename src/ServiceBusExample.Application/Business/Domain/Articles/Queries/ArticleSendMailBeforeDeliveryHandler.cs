@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using ServiceBusExample.Application.Business.Articles.Dtos;
 using ServiceBusExample.Application.Business.Others.Mailing.Dtos;
 using ServiceBusExample.Application.Common.Providers;
+using ServiceBusExample.Application.Events.Domain.MailSending;
 using ServiceBusExample.Application.Repositories;
 using ServiceBusExample.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,11 +19,7 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 
     public class ArticleMailSenBeforeDeliveryOutput
     {
-        public MailSendTemplateDto MailSendTemplateDto { get; set; }
     }
-
-
-
 
     public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryInput, ArticleMailSenBeforeDeliveryOutput>
     {
@@ -45,13 +38,18 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
         }
 
 
-        public Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryInput request, CancellationToken cancellationToken)
+        public async Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryInput request, CancellationToken cancellationToken)
         {
+            var mailDto = new SendingMailDto { To = GetMailList(), MailBody = "Body", BodyIsHtml = true, Title = "Maile baslık bulamadım" };
+            await _mediator.Publish(notification: new SendingMailCreateEvent(mailDto), cancellationToken);
+            return new ArticleMailSenBeforeDeliveryOutput();
+        }
 
 
 
-            return Task.FromResult<ArticleMailSenBeforeDeliveryOutput>(null);
-           
+        private static string[] GetMailList()
+        {
+            return new string[] { "ademolguner@gmail.com", "adem.olguner@hepsiburada.com" };
         }
     }
 }

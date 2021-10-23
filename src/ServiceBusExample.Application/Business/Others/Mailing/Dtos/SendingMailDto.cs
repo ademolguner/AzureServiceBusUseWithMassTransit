@@ -2,7 +2,7 @@
 
 namespace ServiceBusExample.Application.Business.Others.Mailing.Dtos
 {
-    public class MailSendTemplateDto
+    public class SendingMailDto
     {
         public string Title { get; set; }
         public string MailBody { get; set; }

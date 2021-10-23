@@ -1,7 +1,4 @@
-﻿using ServiceBusExample.Application.Business.Articles.Dtos;
-using ServiceBusExample.Application.Common.Mappings;
-using ServiceBusExample.Domain.Common.Attributes;
-using ServiceBusExample.Domain.Entities;
+﻿using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Extensions;
 using System;
 using System.Collections.Generic;

@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
-using ServiceBusExample.Application.Business.Domain.Articles.Queries;
 using ServiceBusExample.Application.Common.Mappings;
-using ServiceBusExample.Application.Common.Models;
 using ServiceBusExample.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Common.MessageModels.ModelMappings
 {
     public class CreatedArticleEventValueMapping : IEntityMessageModelMap<CreatedArticleEventValue, CreatedArticleEventValues, Article>
-    { 
+    {
         public Func<CreatedArticleEventValue, IList<CreatedArticleEventValues>> Entities => v => v.Values.ToList();
         public Func<CreatedArticleEventValue, Guid> MessageId => v => v.Id;
         public Func<CreatedArticleEventValue, DateTime> Timestamp => v => v.Timestamp;

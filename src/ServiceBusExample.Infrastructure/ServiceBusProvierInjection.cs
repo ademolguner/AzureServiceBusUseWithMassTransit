@@ -178,7 +178,6 @@ namespace ServiceBusExample.Infrastructure
                     typeof(DivideByZeroException),
                     typeof(InvalidCastException));
                 r.Immediate(1).Intervals(new TimeSpan[] { TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(60) });
-               
             });
         }
 

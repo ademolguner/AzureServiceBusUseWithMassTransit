@@ -1,11 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,20 +7,17 @@ namespace ServiceBusExample.Application.Events.Domain.MailSending
 {
     public class SendingMailCreateEventHandler : INotificationHandler<SendingMailCreateEvent>
     {
-
         private readonly ILogger<SendingMailCreateEventHandler> _logger;
+
         public SendingMailCreateEventHandler(ILogger<SendingMailCreateEventHandler> logger)
         {
             _logger = logger;
         }
+
         public Task Handle(SendingMailCreateEvent notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Bu alanda mail gönderimi ile ilgili iş kuralını yazabiliriz."); 
+            _logger.LogInformation("Bu alanda mail gönderimi ile ilgili iş kuralını yazabiliriz.");
             return Task.FromResult("Mail gönderimi yapıldı");
         }
-
-
     }
-
-
 }

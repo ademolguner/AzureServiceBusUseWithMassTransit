@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 {
-
     public class ArticleMailSenBeforeDeliveryInput : IRequest<ArticleMailSenBeforeDeliveryOutput>
     {
         public IEnumerable<Article> Articles { get; set; }
@@ -23,7 +22,6 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 
     public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryInput, ArticleMailSenBeforeDeliveryOutput>
     {
-
         private readonly IMapper _mapper;
         private readonly IRepositoryContext _repositoryContext;
         private readonly IMediator _mediator;
@@ -37,15 +35,12 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
             _messageBrokerProvider = messageBrokerProvider;
         }
 
-
         public async Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryInput request, CancellationToken cancellationToken)
         {
             var mailDto = new SendingMailDto { To = GetMailList(), MailBody = "Body", BodyIsHtml = true, Title = "Maile baslık bulamadım" };
             await _mediator.Publish(notification: new SendingMailCreateEvent(mailDto), cancellationToken);
             return new ArticleMailSenBeforeDeliveryOutput();
         }
-
-
 
         private static string[] GetMailList()
         {

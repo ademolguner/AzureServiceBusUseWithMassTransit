@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServiceBusExample.Infrastructure.Persistance;
 
 namespace ServiceBusExample.Infrastructure.Migrations
 {
     [DbContext(typeof(MasstransitExampleDbContext))]
-    partial class MasstransitExampleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211022230407_categorydeleted")]
+    partial class categorydeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

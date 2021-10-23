@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace HepsiExpress.StudyCase.Api.Application.Common.Models
+namespace ServiceBusExample.Application.Common.Models
 {
     public class ResponseException
     {

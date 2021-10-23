@@ -20,7 +20,7 @@ namespace ServiceBusExample.Domain.Models
         public virtual Guid Id
             => TryGetIdFromBody(out var id)
             ? id
-            : throw new InvalidOperationException($"Message Id must be set on {nameof(T)}.");
+            : throw new InvalidOperationException($"Message Id must be set on {nameof(T)} - {Body.GetType().FullName}.");
 
         public abstract string Name { get; }
 

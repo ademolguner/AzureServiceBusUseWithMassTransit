@@ -97,6 +97,14 @@ namespace ServiceBusExample.Infrastructure
                     cfgQue.ConfigureConsumeTopology = false;
 
                     cfgQue.ConfigureConsumer(ctx, item.Class);
+
+                    //Circuit Breaker Kullanımı
+                    cfgQue.UseCircuitBreaker(cb =>
+                    {
+                        cb.TripThreshold = 15;
+                        cb.ActiveThreshold = 10;
+                        cb.ResetInterval = TimeSpan.FromMinutes(5);
+                    });
                 });
             }
         }
@@ -141,6 +149,17 @@ namespace ServiceBusExample.Infrastructure
                             cfgQue.ConfigureConsumeTopology = false;
 
                             cfgQue.ConfigureConsumer(ctx, item.Class);
+
+                            //Circuit Breaker Kullanımı
+                            cfgQue.UseCircuitBreaker(cb =>
+                              {
+                                  cb.TripThreshold = 15;
+                                  cb.ActiveThreshold = 10;
+                                  cb.ResetInterval = TimeSpan.FromMinutes(5);
+                              });
+
+                            //3. Rate Limiter Kullanımı
+                            cfgQue.UseRateLimit(20, TimeSpan.FromSeconds(5));
                         });
                         break;
                 }
@@ -158,7 +177,8 @@ namespace ServiceBusExample.Infrastructure
                     typeof(IndexOutOfRangeException),
                     typeof(DivideByZeroException),
                     typeof(InvalidCastException));
-                r.Immediate(3);
+                r.Immediate(1).Intervals(new TimeSpan[] { TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(60) });
+               
             });
         }
 

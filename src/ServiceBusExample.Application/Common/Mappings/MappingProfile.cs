@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+using ServiceBusExample.Application.Business.Domain.Articles.Queries;
+using ServiceBusExample.Application.Common.MessageModels;
+using ServiceBusExample.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -21,7 +25,10 @@ namespace ServiceBusExample.Application.Common.Mappings
                 typeof(IMapTo<>),
                 typeof(IMapFrom<>),
                 typeof(IMapBoth<>),
-                typeof(IMapBoth<,>)
+                typeof(IMapBoth<,>),
+                typeof(IMessageModelMap<,>),
+                typeof(IEntityMessageModelMap<,,>)
+
             };
             var types = assembly.GetExportedTypes()
                 .Where(t => t.GetInterfaces()
@@ -43,6 +50,8 @@ namespace ServiceBusExample.Application.Common.Mappings
                     methodInfo?.Invoke(instance, new object[] { this });
                 }
             }
+
+            //CreateMap<CreatedArticleEventValues, Article>().ReverseMap();
         }
     }
 }

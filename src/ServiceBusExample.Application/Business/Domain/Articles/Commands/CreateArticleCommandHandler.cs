@@ -15,7 +15,7 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
 {
     public class CreateArticleCommandInput : IRequest<CreateArticleCommandOutput>
     {
-        public CreateArticleDto CreateArticleDto { get; set; }
+        public ArticleDto CreateArticleDto { get; set; }
     }
 
     public class CreateArticleCommandOutput
@@ -41,13 +41,13 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
         public async Task<CreateArticleCommandOutput> Handle(CreateArticleCommandInput request, CancellationToken cancellationToken)
         {
             var articleModel = _mapper.Map<Article>(request.CreateArticleDto);
-            var createdArticle = await _repositoryContext.ArticleRepository.InsertAsync(articleModel, cancellationToken);
+            var createdArticle = await _repositoryContext.ArticleRepository.AddItem(articleModel, cancellationToken);
 
             var createdArticleEventModel = new CreatedArticleEventValue()
             {
                 Timestamp = DateTime.Now,
                 Id = Guid.NewGuid(),
-                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Article = createdArticle.Entity } }
+                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description } }
             };
 
             // servicebus send işlemi

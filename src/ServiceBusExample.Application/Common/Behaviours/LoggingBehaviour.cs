@@ -17,7 +17,7 @@ namespace ServiceBusExample.Application.Common.Behaviours
         {
             if (!context.Request.Path.Value.StartsWith("/health"))
             {
-                logger.LogInformation("HepsiExpress Request: {TraceIdentifier} | {Path} | {@User}",
+                logger.LogInformation("ServiceBusExample Request: {TraceIdentifier} | {Path} | {@User}",
                 context.TraceIdentifier, context.Request.Path,
                 "-1");
             }

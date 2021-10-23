@@ -4,15 +4,20 @@ using ServiceBusExample.Application.Business.Articles.Dtos;
 using ServiceBusExample.Application.Business.Others.Mailing.Dtos;
 using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Application.Repositories;
+using ServiceBusExample.Domain.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
 {
-    public class ArticleMailSenBeforeDeliveryQuery : IRequest<ArticleMailSenBeforeDeliveryOutput>
+
+    public class ArticleMailSenBeforeDeliveryInput : IRequest<ArticleMailSenBeforeDeliveryOutput>
     {
-        public CreateArticleDto CreateArticleDto { get; set; }
+        public IEnumerable<Article> Articles { get; set; }
     }
 
     public class ArticleMailSenBeforeDeliveryOutput
@@ -20,8 +25,12 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
         public MailSendTemplateDto MailSendTemplateDto { get; set; }
     }
 
-    public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryQuery, ArticleMailSenBeforeDeliveryOutput>
+
+
+
+    public class ArticleMailSenBeforeDeliveryHandler : IRequestHandler<ArticleMailSenBeforeDeliveryInput, ArticleMailSenBeforeDeliveryOutput>
     {
+
         private readonly IMapper _mapper;
         private readonly IRepositoryContext _repositoryContext;
         private readonly IMediator _mediator;
@@ -35,10 +44,14 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Queries
             _messageBrokerProvider = messageBrokerProvider;
         }
 
-        public Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryQuery request, CancellationToken cancellationToken)
+
+        public Task<ArticleMailSenBeforeDeliveryOutput> Handle(ArticleMailSenBeforeDeliveryInput request, CancellationToken cancellationToken)
         {
-            //İş kuralları ile ilgili kod alanı.
-            throw new NotImplementedException();
+
+
+
+            return Task.FromResult<ArticleMailSenBeforeDeliveryOutput>(null);
+           
         }
     }
 }

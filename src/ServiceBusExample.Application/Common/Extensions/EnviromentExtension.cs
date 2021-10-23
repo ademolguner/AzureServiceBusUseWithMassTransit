@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace HepsiExpress.StudyCase.Api.Application.Common.Extensions
+namespace ServiceBusExample.Application.Common.Extensions
 {
     public static class EnviromentExtension
     {

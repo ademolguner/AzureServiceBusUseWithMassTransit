@@ -1,4 +1,6 @@
-﻿using ServiceBusExample.Domain.Common.Attributes;
+﻿using ServiceBusExample.Application.Business.Articles.Dtos;
+using ServiceBusExample.Application.Common.Mappings;
+using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Entities;
 using ServiceBusExample.Domain.Extensions;
 using System;
@@ -16,6 +18,8 @@ namespace ServiceBusExample.Application.Common.MessageModels
 
     public class CreatedArticleEventValues
     {
-        public Article Article { get; set; }
+        public long Id { get; set; }
+        public string Baslik { get; set; }
+        public string Aciklama { get; set; }
     }
 }

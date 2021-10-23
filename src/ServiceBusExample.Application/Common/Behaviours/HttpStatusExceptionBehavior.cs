@@ -1,6 +1,6 @@
-﻿using HepsiExpress.StudyCase.Api.Application.Common.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using ServiceBusExample.Application.Common.Models;
 using System;
 using System.Net;
 using System.Text.Json;

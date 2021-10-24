@@ -4,6 +4,7 @@ using MassTransit.Azure.ServiceBus.Core;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Enums;
@@ -82,9 +83,9 @@ namespace ServiceBusExample.Infrastructure
 
         private static void InMemoryConfig(IBusRegistrationContext ctx, IInMemoryBusFactoryConfigurator cfg)
         {
-            //var loggerStore = new MasstransitAuditStore(ctx.GetService<ILogger<MasstransitAuditStore>>());
-            //cfg.ConnectConsumeAuditObserver(loggerStore);
-            //cfg.ConnectSendAuditObservers(loggerStore);
+            var loggerStore = new MasstransitAuditStore(ctx.GetService<ILogger<MasstransitAuditStore>>());
+            cfg.ConnectConsumeAuditObserver(loggerStore);
+            cfg.ConnectSendAuditObservers(loggerStore);
 
             cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter(cfg.MessageTopology.EntityNameFormatter));
 
@@ -111,9 +112,9 @@ namespace ServiceBusExample.Infrastructure
 
         private static void ServiceBusConfiguration(IBusRegistrationContext ctx, IServiceBusBusFactoryConfigurator cfg)
         {
-            //var loggerStore = new MasstransitAuditStore(ctx.GetService<ILogger<MasstransitAuditStore>>());
-            //cfg.ConnectConsumeAuditObserver(loggerStore);
-            //cfg.ConnectSendAuditObservers(loggerStore);
+            var loggerStore = new MasstransitAuditStore(ctx.GetService<ILogger<MasstransitAuditStore>>());
+            cfg.ConnectConsumeAuditObserver(loggerStore);
+            cfg.ConnectSendAuditObservers(loggerStore);
 
             cfg.Host(_connectionString);
             cfg.MessageTopology.SetEntityNameFormatter(new MessageNameFormatter(cfg.MessageTopology.EntityNameFormatter));

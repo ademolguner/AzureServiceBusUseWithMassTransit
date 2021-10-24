@@ -12,6 +12,7 @@ namespace ServiceBusExample.Infrastructure.Persistance.Configurations.Entities
             builder.HasKey(k => k.Id);
             builder.Property(t => t.Id).UseIdentityColumn(1, 1);
             builder.Property(p => p.Title).HasMaxLength(500).IsRequired();
+                builder.Property(p=> p.IsIndex).HasColumnType("bit");
         }
     }
 }

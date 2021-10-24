@@ -25,7 +25,8 @@ namespace ServiceBusExample.Application.Common.MessageModels.ModelMappings
         {
             mapper.ForMember(t => t.Description, t => t.MapFrom(o => o.Aciklama))
                 .ForMember(t => t.Title, t => t.MapFrom(o => o.Baslik))
-                .ForMember(t => t.Id, t => t.MapFrom(o => o.Id));
+                .ForMember(t => t.Id, t => t.MapFrom(o => o.Id))
+                .ForMember(t => t.IsIndex, t => t.MapFrom(o => o.IsIndex));
         }
     }
 }

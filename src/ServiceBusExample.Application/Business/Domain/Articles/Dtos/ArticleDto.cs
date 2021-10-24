@@ -9,5 +9,6 @@ namespace ServiceBusExample.Application.Business.Articles.Dtos
         public string Title { get; set; }
 
         public string Description { get; set; }
+        public bool IsIndex { get; set; } = false;
     }
 }

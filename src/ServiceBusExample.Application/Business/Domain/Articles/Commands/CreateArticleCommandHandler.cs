@@ -47,7 +47,7 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
             {
                 Timestamp = DateTime.Now,
                 Id = Guid.NewGuid(),
-                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description } }
+                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex=true } }
             };
 
             // servicebus send işlemi

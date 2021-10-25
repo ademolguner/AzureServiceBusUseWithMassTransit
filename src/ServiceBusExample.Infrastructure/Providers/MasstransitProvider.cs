@@ -5,6 +5,9 @@ using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -65,6 +68,14 @@ namespace ServiceBusExample.Infrastructure.Providers
                 {
                     context.Headers.Set(item.Key, item.Value);
                 }
+
+                var props = message.Body.GetType().GetProperties(BindingFlags.Public).Where(p=> p.Name=="Values");
+                foreach (var prop in props)
+                {
+                    context.Headers.Set(prop.Name, prop.GetValue(message.Body,null));
+                }
+
+                context.Headers.Set("SearchKey", "Adem OLGUNER");
             };
         }
     }

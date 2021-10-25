@@ -18,6 +18,8 @@ namespace ServiceBusExample.Application.Common.MessageModels
         public long Id { get; set; }
         public string Baslik { get; set; }
         public string Aciklama { get; set; }
-        public bool IsIndex { get; set; }
+
+        [MessageConsumerFilterableAttribute("IsIndex")]
+        public string IsIndex { get; set; }
     }
 }

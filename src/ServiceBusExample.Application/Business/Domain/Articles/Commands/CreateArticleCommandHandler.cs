@@ -27,14 +27,15 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryContext _repositoryContext;
-        private readonly IMediator _mediator;
         private readonly IMessageBrokerProvider _messageBrokerProvider;
 
-        public CreateArticleCommandHandler(IMapper mapper, IRepositoryContext repositoryContext, IMediator mediator, IMessageBrokerProvider messageBrokerProvider)
+        public CreateArticleCommandHandler(
+            IMapper mapper, 
+            IRepositoryContext repositoryContext, 
+            IMessageBrokerProvider messageBrokerProvider)
         {
             _mapper = mapper;
             _repositoryContext = repositoryContext;
-            _mediator = mediator;
             _messageBrokerProvider = messageBrokerProvider;
         }
 
@@ -50,17 +51,7 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
                 Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex = createdArticle.IsIndex } }
             };
 
-             
-
-
-            //var allFilteredProperties = typeof(CreatedArticleEventValues)
-            //    .GetProperties()
-            //    .Where(p => p.IsDefined(typeof(MessageConsumerFilterableAttribute), true))
-            //    .ToList();
-            // servicebus send işlemi
             await _messageBrokerProvider.Send(GenericMessage.Create(eventModel, eventModel.GetFiltered(eventModel.Values[0])), cancellationToken);
-            //await _messageBrokerProvider.Send(GenericMessage.Create(createdArticleEventModel,new Dictionary<string,string>()), cancellationToken);
-
             return new CreateArticleCommandOutput
             {
                 ArticleDto = _mapper.Map<ArticleDto>(createdArticle)

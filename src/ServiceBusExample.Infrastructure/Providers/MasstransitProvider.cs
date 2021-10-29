@@ -54,7 +54,6 @@ namespace ServiceBusExample.Infrastructure.Providers
              where T : class 
             where TValues : Dictionary<string, string>
         {
-            // SetContextSettings(out topic);
             await _publishEndpoint.Publish(topic.Body, SetContextSettings(topic), cancellationToken);
         }
 
@@ -85,34 +84,5 @@ namespace ServiceBusExample.Infrastructure.Providers
 
             throw new NotImplementedException();
         }
-
-
-
-        //private static Action<SendContext<T, TValues>> SetContextSettings<T, TValues>(IMessage<T, TValues> message)
-        //     where T : class where TValues : class, IList
-        //{
-        //    return context =>
-        //    {
-
-
-        //        context.ConversationId = message.Id;
-        //        context.SetSessionId(message.Id.ToString());
-
-        //        foreach (var item in message.Headers)
-        //        {
-        //            context.Headers.Set(item.Key, item.Value);
-        //        }
-
-        //        var props = message.Body.GetType().GetProperties(BindingFlags.Public).Where(p => p.Name == "Values");
-        //        foreach (var prop in props)
-        //        {
-        //            context.Headers.Set(prop.Name, prop.GetValue(message.Body, null));
-        //        }
-
-        //        context.Headers.Set("SearchKey", "Adem OLGUNER");
-        //    };
-        //}
-
-
     }
 }

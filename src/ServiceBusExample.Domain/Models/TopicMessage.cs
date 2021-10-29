@@ -1,11 +1,15 @@
 ﻿using ServiceBusExample.Domain.Interfaces;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ServiceBusExample.Domain.Models
 {
-    public abstract class TopicMessage<T> : MessageBase<T>, ITopicMessage<T> where T : class
+    public abstract class TopicMessage<T, TValues> : MessageBase<T, TValues>, ITopicMessage<T, TValues>
+        where T : class
+        where TValues : Dictionary<string, string>
     {
-        protected TopicMessage(T body) : base(body)
+        protected TopicMessage(T body, TValues values) : base(body, values)
         {
         }
 

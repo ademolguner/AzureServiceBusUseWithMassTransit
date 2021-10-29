@@ -1,13 +1,17 @@
 ﻿using ServiceBusExample.Domain.Interfaces;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ServiceBusExample.Domain.Models
 {
-    public class QueueMessage<T> : MessageBase<T>, IQueueMessage<T> where T : class
+    public class QueueMessage<T, TValues> : MessageBase<T, TValues>, IQueueMessage<T, TValues>
+        where T : class
+        where TValues : Dictionary<string, string>
     {
         protected string QueueName;
 
-        public QueueMessage(T body) : base(body)
+        public QueueMessage(T body, TValues values) : base(body, values)
         {
         }
 

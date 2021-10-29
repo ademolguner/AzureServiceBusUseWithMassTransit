@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ServiceBusExample.Domain.Common.Attributes
 {
     //[AttributeUsage(AttributeTargets.Field)]
-    [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
 
     public sealed class MessageConsumerFilterableAttribute : Attribute
     {

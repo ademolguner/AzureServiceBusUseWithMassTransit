@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Api.Consumers
 {
-    [MessageConsumer(MessageTypes.Topic, MessageConsts.ArticleCreate, MessageConsts.SubscritionName2, " SearchKey LIKE '%Adem OLGUNER%'")]
+    [MessageConsumer(MessageTypes.Topic, MessageConsts.ArticleCreate, MessageConsts.SubscritionName2, " IsIndex LIKE '%evet%'")]
     public class ArticleElasticIndexConsumer : IConsumer<CreatedArticleEventValue>
     {
         private readonly IMediator _mediator;

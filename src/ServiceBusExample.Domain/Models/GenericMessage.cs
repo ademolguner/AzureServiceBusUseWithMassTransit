@@ -2,17 +2,21 @@
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ServiceBusExample.Domain.Models
 {
-    public class GenericMessage<T> : MessageBase<T>, IGenericMessage<T> where T : class
+    public class GenericMessage<T, TValues> : MessageBase<T, TValues>, IGenericMessage<T, TValues>
+        where T : class
+        where TValues : Dictionary<string, string>
     {
         private readonly string _Name;
 
         public MessageTypes MessageType { get; }
 
-        public GenericMessage(T body) : base(body)
+        public GenericMessage(T body, TValues values) : base(body,values)
         {
             var attribute = typeof(T)
                 .GetCustomAttributes(typeof(MessageNameAttribute), false)
@@ -30,10 +34,16 @@ namespace ServiceBusExample.Domain.Models
         {
             return new Uri($"{MessageType.ToString().ToLower()}:{Name}");
         }
+ 
     }
 
     public static class GenericMessage
     {
-        public static GenericMessage<T> Create<T>(T body) where T : class => new(body);
+        public static GenericMessage<T, TValues> Create<T, TValues>(T body, TValues values)
+            where T : class 
+            where TValues : Dictionary<string, string>
+        {
+            return new(body, values);
+        }
     }
 }

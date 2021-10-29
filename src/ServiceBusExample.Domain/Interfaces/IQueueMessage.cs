@@ -1,6 +1,10 @@
-﻿namespace ServiceBusExample.Domain.Interfaces
+﻿using System.Collections.Generic;
+
+namespace ServiceBusExample.Domain.Interfaces
 {
-    public interface IQueueMessage<out T> : IMessage<T> where T : class
+    public interface IQueueMessage<out T, TValues> : IMessage<T, TValues>
+        where T : class
+        where TValues : Dictionary<string, string>
     {
     }
 }

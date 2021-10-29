@@ -43,15 +43,23 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
             var articleModel = _mapper.Map<Article>(request.CreateArticleDto);
             var createdArticle = await _repositoryContext.ArticleRepository.AddItem(articleModel, cancellationToken);
 
-            var createdArticleEventModel = new CreatedArticleEventValue()
+            var eventModel = new CreatedArticleEventValue()
             {
                 Timestamp = DateTime.Now,
                 Id = Guid.NewGuid(),
-                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex= createdArticle.IsIndex } }
+                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex = createdArticle.IsIndex } }
             };
 
+             
+
+
+            //var allFilteredProperties = typeof(CreatedArticleEventValues)
+            //    .GetProperties()
+            //    .Where(p => p.IsDefined(typeof(MessageConsumerFilterableAttribute), true))
+            //    .ToList();
             // servicebus send işlemi
-            await _messageBrokerProvider.Send(GenericMessage.Create(createdArticleEventModel), cancellationToken);
+            await _messageBrokerProvider.Send(GenericMessage.Create(eventModel, eventModel.GetFiltered(eventModel.Values[0])), cancellationToken);
+            //await _messageBrokerProvider.Send(GenericMessage.Create(createdArticleEventModel,new Dictionary<string,string>()), cancellationToken);
 
             return new CreateArticleCommandOutput
             {

@@ -2,9 +2,11 @@
 using MassTransit.Azure.ServiceBus.Core;
 using NewRelic.Api.Agent;
 using ServiceBusExample.Application.Common.Providers;
+using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,17 +29,19 @@ namespace ServiceBusExample.Infrastructure.Providers
         }
 
         [Trace]
-        public async Task Send<T>(IMessage<T> message, CancellationToken cancellationToken) where T : class
+        public async Task Send<T, TValues>(IMessage<T, TValues> message, CancellationToken cancellationToken)
+              where T : class 
+            where TValues :  Dictionary<string, string>
         {
             switch (message)
             {
-                case IQueueMessage<T> _:
-                case IGenericMessage<T> { MessageType: MessageTypes.Queue }:
+                case IQueueMessage<T, TValues> _:
+                case IGenericMessage<T, TValues> { MessageType: MessageTypes.Queue }:
                     await SendToQueue(message, cancellationToken);
                     break;
 
-                case ITopicMessage<T> _:
-                case IGenericMessage<T> { MessageType: MessageTypes.Topic }:
+                case ITopicMessage<T, TValues> _:
+                case IGenericMessage<T, TValues> { MessageType: MessageTypes.Topic }:
                     await SendToTopic(message, cancellationToken);
                     break;
 
@@ -46,37 +50,69 @@ namespace ServiceBusExample.Infrastructure.Providers
             }
         }
 
-        private async Task SendToTopic<T>(IMessage<T> topic, CancellationToken cancellationToken) where T : class
+        private async Task SendToTopic<T, TValues>(IMessage<T, TValues> topic, CancellationToken cancellationToken)
+             where T : class 
+            where TValues : Dictionary<string, string>
         {
+            // SetContextSettings(out topic);
             await _publishEndpoint.Publish(topic.Body, SetContextSettings(topic), cancellationToken);
         }
 
-        private async Task SendToQueue<T>(IMessage<T> queue, CancellationToken cancellationToken) where T : class
+
+
+        private async Task SendToQueue<T, TValues>(IMessage<T, TValues> queue, CancellationToken cancellationToken)
+            where T : class
+            where TValues : Dictionary<string, string>
         {
             var endPoint = await _endpointProvider.GetSendEndpoint(queue.GetMessageAddress());
-            await endPoint.Send(queue.Body, SetContextSettings(queue), cancellationToken);
+            await endPoint.Send(queue.Body, cancellationToken);
         }
 
-        private static Action<SendContext<T>> SetContextSettings<T>(IMessage<T> message) where T : class
-        {
+
+        private static Action<MassTransit.SendContext<T>> SetContextSettings<T, TValues>(IMessage<T, TValues> message)
+           where T : class
+            where TValues : Dictionary<string, string>
+        { 
             return context =>
-            {
-                context.ConversationId = message.Id;
-                context.SetSessionId(message.Id.ToString());
+             {
+                 context.ConversationId = message.Id;
+                 context.SetSessionId(message.Id.ToString());
+                 foreach (var item in message.Headers)
+                 {
+                     context.Headers.Set(item.Key, item.Value);
+                 }
+             };
 
-                foreach (var item in message.Headers)
-                {
-                    context.Headers.Set(item.Key, item.Value);
-                }
-
-                var props = message.Body.GetType().GetProperties(BindingFlags.Public).Where(p=> p.Name=="Values");
-                foreach (var prop in props)
-                {
-                    context.Headers.Set(prop.Name, prop.GetValue(message.Body,null));
-                }
-
-                context.Headers.Set("SearchKey", "Adem OLGUNER");
-            };
+            throw new NotImplementedException();
         }
+
+
+
+        //private static Action<SendContext<T, TValues>> SetContextSettings<T, TValues>(IMessage<T, TValues> message)
+        //     where T : class where TValues : class, IList
+        //{
+        //    return context =>
+        //    {
+
+
+        //        context.ConversationId = message.Id;
+        //        context.SetSessionId(message.Id.ToString());
+
+        //        foreach (var item in message.Headers)
+        //        {
+        //            context.Headers.Set(item.Key, item.Value);
+        //        }
+
+        //        var props = message.Body.GetType().GetProperties(BindingFlags.Public).Where(p => p.Name == "Values");
+        //        foreach (var prop in props)
+        //        {
+        //            context.Headers.Set(prop.Name, prop.GetValue(message.Body, null));
+        //        }
+
+        //        context.Headers.Set("SearchKey", "Adem OLGUNER");
+        //    };
+        //}
+
+
     }
 }

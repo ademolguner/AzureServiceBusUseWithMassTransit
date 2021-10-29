@@ -19,7 +19,7 @@ namespace ServiceBusExample.Api.Consumers
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
         private readonly ILogger<ArticleElasticIndexConsumer> _logger;
-         
+
         public ArticleElasticIndexConsumer(IMediator mediator, IMapper mapper, ILogger<ArticleElasticIndexConsumer> logger)
         {
             _mediator = mediator;

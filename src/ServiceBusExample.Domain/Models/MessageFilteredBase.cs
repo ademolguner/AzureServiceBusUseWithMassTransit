@@ -6,7 +6,6 @@ using System.Reflection;
 
 namespace ServiceBusExample.Domain.Models
 {
-
     public abstract class MessageFilteredBase<TFilter> : IMessageFiltered<TFilter> where TFilter : class, new()
     {
         public Dictionary<string, string> GetFiltered(TFilter value)

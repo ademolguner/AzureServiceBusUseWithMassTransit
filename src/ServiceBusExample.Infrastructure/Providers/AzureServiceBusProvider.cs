@@ -5,9 +5,7 @@ using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,7 +42,7 @@ namespace ServiceBusExample.Infrastructure.Providers
             }
         }
 
-        private async Task SendTopic<T, TValues>(IMessage<T, TValues> topic) 
+        private async Task SendTopic<T, TValues>(IMessage<T, TValues> topic)
             where T : class
              where TValues : Dictionary<string, string>
         {
@@ -60,7 +58,7 @@ namespace ServiceBusExample.Infrastructure.Providers
             await client.SendAsync(CreateAzureMessage(queue));
         }
 
-        private static Message CreateAzureMessage<T, TValues>(IMessage<T, TValues> message) 
+        private static Message CreateAzureMessage<T, TValues>(IMessage<T, TValues> message)
             where T : class
              where TValues : Dictionary<string, string>
         {
@@ -76,9 +74,5 @@ namespace ServiceBusExample.Infrastructure.Providers
             }
             return azureMesssage;
         }
-
-        
-
-        
     }
 }

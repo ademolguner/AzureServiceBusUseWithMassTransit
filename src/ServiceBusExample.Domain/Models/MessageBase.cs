@@ -1,11 +1,6 @@
-﻿using ServiceBusExample.Domain.Common.Attributes;
-using ServiceBusExample.Domain.Interfaces;
+﻿using ServiceBusExample.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 
 namespace ServiceBusExample.Domain.Models
@@ -22,7 +17,7 @@ namespace ServiceBusExample.Domain.Models
         {
             Body = body ?? throw new ArgumentNullException(nameof(body), "Body can not be null.");
             Headers = values;
-        } 
+        }
 
         public virtual Guid Id
             => TryGetIdFromBody(out var id)

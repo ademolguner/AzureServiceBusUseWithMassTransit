@@ -30,8 +30,8 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
         private readonly IMessageBrokerProvider _messageBrokerProvider;
 
         public CreateArticleCommandHandler(
-            IMapper mapper, 
-            IRepositoryContext repositoryContext, 
+            IMapper mapper,
+            IRepositoryContext repositoryContext,
             IMessageBrokerProvider messageBrokerProvider)
         {
             _mapper = mapper;
@@ -51,7 +51,7 @@ namespace ServiceBusExample.Application.Business.Articles.Commands
                 Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex = createdArticle.IsIndex } }
             };
 
-             await _messageBrokerProvider.Send(GenericMessage.Create(eventModel, eventModel.GetFiltered(eventModel.Values[0])), cancellationToken);
+            await _messageBrokerProvider.Send(GenericMessage.Create(eventModel, eventModel.GetFiltered(eventModel.Values[0])), cancellationToken);
             // await _messageBrokerProvider.Send(message: GenericMessage.Create(eventModel, default(Dictionary<string,string>)), cancellationToken);
             return new CreateArticleCommandOutput
             {

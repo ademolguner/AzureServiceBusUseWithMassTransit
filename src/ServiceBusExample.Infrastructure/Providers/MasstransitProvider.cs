@@ -2,14 +2,10 @@
 using MassTransit.Azure.ServiceBus.Core;
 using NewRelic.Api.Agent;
 using ServiceBusExample.Application.Common.Providers;
-using ServiceBusExample.Domain.Common.Attributes;
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,8 +53,6 @@ namespace ServiceBusExample.Infrastructure.Providers
             await _publishEndpoint.Publish(topic.Body, SetContextSettings(topic), cancellationToken);
         }
 
-
-
         private async Task SendToQueue<T, TValues>(IMessage<T, TValues> queue, CancellationToken cancellationToken)
             where T : class
             where TValues : Dictionary<string, string>
@@ -66,7 +60,6 @@ namespace ServiceBusExample.Infrastructure.Providers
             var endPoint = await _endpointProvider.GetSendEndpoint(queue.GetMessageAddress());
             await endPoint.Send(queue.Body, cancellationToken);
         }
-
 
         private static Action<MassTransit.SendContext<T>> SetContextSettings<T, TValues>(IMessage<T, TValues> message)
            where T : class

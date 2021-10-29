@@ -2,7 +2,6 @@
 using ServiceBusExample.Domain.Enums;
 using ServiceBusExample.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,7 +33,6 @@ namespace ServiceBusExample.Domain.Models
         {
             return new Uri($"{MessageType.ToString().ToLower()}:{Name}");
         }
-
     }
 
     public static class GenericMessage
@@ -44,6 +42,6 @@ namespace ServiceBusExample.Domain.Models
             where TValues : Dictionary<string, string>
         {
             return new(body, values);
-        } 
+        }
     }
 }

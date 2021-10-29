@@ -5,7 +5,7 @@ namespace ServiceBusExample.Domain.Interfaces
 {
     public interface IMessage<out T, TValues>
         where T : class
-        where TValues :  Dictionary<string, string>
+        where TValues : Dictionary<string, string>
     {
         T Body { get; }
         Guid Id { get; }

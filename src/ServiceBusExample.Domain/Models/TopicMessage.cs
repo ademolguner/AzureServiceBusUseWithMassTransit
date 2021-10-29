@@ -1,6 +1,5 @@
 ﻿using ServiceBusExample.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace ServiceBusExample.Domain.Models

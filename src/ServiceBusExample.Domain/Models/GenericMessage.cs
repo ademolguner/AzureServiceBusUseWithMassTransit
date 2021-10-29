@@ -16,7 +16,7 @@ namespace ServiceBusExample.Domain.Models
 
         public MessageTypes MessageType { get; }
 
-        public GenericMessage(T body, TValues values) : base(body,values)
+        public GenericMessage(T body, TValues values = default) : base(body, values)
         {
             var attribute = typeof(T)
                 .GetCustomAttributes(typeof(MessageNameAttribute), false)
@@ -34,16 +34,16 @@ namespace ServiceBusExample.Domain.Models
         {
             return new Uri($"{MessageType.ToString().ToLower()}:{Name}");
         }
- 
+
     }
 
     public static class GenericMessage
     {
-        public static GenericMessage<T, TValues> Create<T, TValues>(T body, TValues values)
-            where T : class 
+        public static GenericMessage<T, TValues> Create<T, TValues>(T body, TValues values = default)
+            where T : class
             where TValues : Dictionary<string, string>
         {
             return new(body, values);
-        }
+        } 
     }
 }

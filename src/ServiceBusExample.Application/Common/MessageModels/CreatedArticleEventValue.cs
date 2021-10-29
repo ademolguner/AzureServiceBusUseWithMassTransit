@@ -23,7 +23,7 @@ namespace ServiceBusExample.Application.Common.MessageModels
         public string Baslik { get; set; }
         public string Aciklama { get; set; }
 
-        [MessageConsumerFilterableAttribute("IsIndex")]
+        [MessageConsumerFilterable]
         public string IsIndex { get; set; }
     } 
 }

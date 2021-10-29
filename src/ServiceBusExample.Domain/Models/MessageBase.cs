@@ -21,7 +21,6 @@ namespace ServiceBusExample.Domain.Models
         protected MessageBase(T body, TValues values)
         {
             Body = body ?? throw new ArgumentNullException(nameof(body), "Body can not be null.");
-            Values = values ?? throw new ArgumentNullException(nameof(values), "Values can not be null.");
             Headers = values;
         } 
 
@@ -36,7 +35,7 @@ namespace ServiceBusExample.Domain.Models
 
         public virtual Dictionary<string, string> Headers { get; set; }
 
-        public virtual TValues Values { get; private set; }
+        public virtual TValues? Values { get; private set; }
 
         public abstract Uri GetMessageAddress();
 

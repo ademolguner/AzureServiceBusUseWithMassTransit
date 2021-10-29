@@ -30,8 +30,8 @@ namespace ServiceBusExample.Infrastructure.Providers
 
         [Trace]
         public async Task Send<T, TValues>(IMessage<T, TValues> message, CancellationToken cancellationToken)
-              where T : class 
-            where TValues :  Dictionary<string, string>
+              where T : class
+            where TValues : Dictionary<string, string>
         {
             switch (message)
             {
@@ -51,7 +51,7 @@ namespace ServiceBusExample.Infrastructure.Providers
         }
 
         private async Task SendToTopic<T, TValues>(IMessage<T, TValues> topic, CancellationToken cancellationToken)
-             where T : class 
+             where T : class
             where TValues : Dictionary<string, string>
         {
             await _publishEndpoint.Publish(topic.Body, SetContextSettings(topic), cancellationToken);
@@ -71,15 +71,16 @@ namespace ServiceBusExample.Infrastructure.Providers
         private static Action<MassTransit.SendContext<T>> SetContextSettings<T, TValues>(IMessage<T, TValues> message)
            where T : class
             where TValues : Dictionary<string, string>
-        { 
+        {
             return context =>
              {
                  context.ConversationId = message.Id;
                  context.SetSessionId(message.Id.ToString());
-                 foreach (var item in message.Headers)
-                 {
-                     context.Headers.Set(item.Key, item.Value);
-                 }
+                 if (message.Headers != null)
+                     foreach (var item in message.Headers)
+                     {
+                         context.Headers.Set(item.Key, item.Value);
+                     }
              };
 
             throw new NotImplementedException();

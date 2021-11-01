@@ -29,7 +29,7 @@ namespace ServiceBusExample.Api.Consumers
 
         public async Task Consume(ConsumeContext<CreatedArticleEventValue> context)
         {
-            _logger.LogInformation("Bu alanda mail gönderimi ile ilgili iş kuralını yazabiliriz.");
+            _logger.LogInformation("Bu alanda ArticleElasticIndexConsumer gönderimi ile ilgili iş kuralını yazabiliriz.");
             var model = _mapper.Map<List<Article>>(context.Message.Values);
             await _mediator.Send(new ArticleMailSenBeforeDeliveryInput { Articles = model }, context.CancellationToken);
         }

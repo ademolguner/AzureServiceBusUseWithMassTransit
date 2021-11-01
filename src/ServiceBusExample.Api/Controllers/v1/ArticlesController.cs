@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBusExample.Api.Common;
-using ServiceBusExample.Application.Business.Articles.Commands;
 using System.Threading.Tasks;
+using ServiceBusExample.Application.Business.Domain.Articles.Commands;
 
 namespace ServiceBusExample.Api.Controllers
 {

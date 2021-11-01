@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace ServiceBusExample.Application.Events.Domain.MailSending
 {
-    public class SendingMailCreateEventHandler : INotificationHandler<SendingMailCreateEvent>
+    public class SendingMailCreatedEventHandler : INotificationHandler<SendingMailCreateEvent>
     {
-        private readonly ILogger<SendingMailCreateEventHandler> _logger;
+        private readonly ILogger<SendingMailCreatedEventHandler> _logger;
 
-        public SendingMailCreateEventHandler(ILogger<SendingMailCreateEventHandler> logger)
+        public SendingMailCreatedEventHandler(ILogger<SendingMailCreatedEventHandler> logger)
         {
             _logger = logger;
         }

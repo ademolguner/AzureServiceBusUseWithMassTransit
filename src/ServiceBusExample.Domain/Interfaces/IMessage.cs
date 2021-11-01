@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ServiceBusExample.Domain.Interfaces
 {
-    public interface IMessage<out T, TValues>
+    public interface IMessage<out T, out TValues>
         where T : class
         where TValues : Dictionary<string, string>
     {

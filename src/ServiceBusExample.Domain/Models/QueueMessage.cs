@@ -8,15 +8,15 @@ namespace ServiceBusExample.Domain.Models
         where T : class
         where TValues : Dictionary<string, string>
     {
-        protected string QueueName;
+        private string _queueName;
 
         public QueueMessage(T body, TValues values) : base(body, values)
         {
         }
 
-        public void SetName(string name) => QueueName = name;
+        public void SetName(string name) => _queueName = name;
 
-        public override string Name => QueueName;
+        public override string Name => _queueName;
 
         public override Uri GetMessageAddress()
         {

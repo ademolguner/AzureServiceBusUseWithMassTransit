@@ -11,8 +11,6 @@ namespace ServiceBusExample.Domain.Models
         where T : class
         where TValues : Dictionary<string, string>
     {
-        private readonly string _Name;
-
         public MessageTypes MessageType { get; }
 
         public GenericMessage(T body, TValues values = default) : base(body, values)
@@ -24,10 +22,10 @@ namespace ServiceBusExample.Domain.Models
             if (attribute == null)
                 throw new InvalidOperationException($"{body.GetType().Name} must have MessageNameAttribute.");
             MessageType = attribute.MessageType;
-            _Name = attribute.Name;
+            Name = attribute.Name;
         }
 
-        public override string Name => _Name;
+        public override string Name { get; }
 
         public override Uri GetMessageAddress()
         {
@@ -41,7 +39,7 @@ namespace ServiceBusExample.Domain.Models
             where T : class
             where TValues : Dictionary<string, string>
         {
-            return new(body, values);
+            return new GenericMessage<T, TValues>(body, values);
         }
     }
 }

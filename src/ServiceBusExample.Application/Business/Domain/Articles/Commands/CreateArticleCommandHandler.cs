@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using ServiceBusExample.Application.Business.Articles.Dtos;
 using ServiceBusExample.Application.Common.MessageModels;
@@ -6,12 +10,8 @@ using ServiceBusExample.Application.Common.Providers;
 using ServiceBusExample.Application.Repositories;
 using ServiceBusExample.Domain.Entities;
 using ServiceBusExample.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace ServiceBusExample.Application.Business.Articles.Commands
+namespace ServiceBusExample.Application.Business.Domain.Articles.Commands
 {
     public class CreateArticleCommandInput : IRequest<CreateArticleCommandOutput>
     {

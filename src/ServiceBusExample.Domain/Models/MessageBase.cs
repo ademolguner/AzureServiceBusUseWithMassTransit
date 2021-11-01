@@ -7,7 +7,7 @@ namespace ServiceBusExample.Domain.Models
 {
     public abstract class MessageBase<T, TValues> : IMessage<T, TValues>
        where T : class
-        where TValues : Dictionary<string, string>
+       where TValues : Dictionary<string, string>
     {
         private MessageBase()
         {
@@ -30,7 +30,7 @@ namespace ServiceBusExample.Domain.Models
 
         public virtual Dictionary<string, string> Headers { get; set; }
 
-        public virtual TValues? Values { get; private set; }
+        public virtual TValues Values { get; private set; }
 
         public abstract Uri GetMessageAddress();
 

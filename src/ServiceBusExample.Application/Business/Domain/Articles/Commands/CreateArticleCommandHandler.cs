@@ -48,11 +48,26 @@ namespace ServiceBusExample.Application.Business.Domain.Articles.Commands
             {
                 Timestamp = DateTime.Now,
                 Id = Guid.NewGuid(),
-                Values = new List<CreatedArticleEventValues> { new CreatedArticleEventValues() { Id = createdArticle.Id, Baslik = createdArticle.Title, Aciklama = createdArticle.Description, IsIndex = createdArticle.IsIndex } }
+                Values = new List<CreatedArticleEventValues>
+                {
+                    new CreatedArticleEventValues()
+                    {
+                        Id = createdArticle.Id, 
+                        Baslik = createdArticle.Title, 
+                        Aciklama = createdArticle.Description, 
+                        IsIndex = createdArticle.IsIndex
+                    }
+                }
             };
-
-            await _messageBrokerProvider.Send(GenericMessage.Create(eventModel, eventModel.GetFiltered(eventModel.Values[0])), cancellationToken);
-            // await _messageBrokerProvider.Send(message: GenericMessage.Create(eventModel, default(Dictionary<string,string>)), cancellationToken);
+            
+            // await _messageBrokerProvider.Send(message: GenericMessage.Create(body:eventModel, default(Dictionary<string,string>)),cancellationToken: cancellationToken);
+             
+           await _messageBrokerProvider.Send(
+              message: GenericMessage.Create(
+                         body:eventModel, 
+                         eventModel.GetFiltered(eventModel.Values[0])), 
+              cancellationToken);
+           
             return new CreateArticleCommandOutput
             {
                 ArticleDto = _mapper.Map<ArticleDto>(createdArticle)

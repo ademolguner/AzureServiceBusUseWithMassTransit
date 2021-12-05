@@ -1,9 +1,9 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
-namespace ServiceBusExample.Application.Events.Domain.MailSending
+namespace ServiceBusExample.Application.Events.Domain.MailSending.Handlers
 {
     public class SendingMailCreatedEventHandler : INotificationHandler<SendingMailCreateEvent>
     {

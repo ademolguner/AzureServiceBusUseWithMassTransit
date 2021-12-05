@@ -14,13 +14,9 @@ namespace ServiceBusExample.Domain.Models
                 .GetProperties()
                 .Where(p => p.IsDefined(typeof(MessageConsumerFilterableAttribute), true));
 
-            var filterItemList = new Dictionary<string, string>();
-
-            foreach (var prop in properties)
-            {
-                filterItemList.Add(prop.Name, value.GetType().GetRuntimeProperty(prop.Name)?.GetValue(value).ToString());
-            }
-            return filterItemList;
+            return properties.ToDictionary(
+                prop => prop.Name, 
+                prop => value.GetType().GetRuntimeProperty(prop.Name)?.GetValue(value)?.ToString());
         }
     }
 }

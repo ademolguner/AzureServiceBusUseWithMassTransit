@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBusExample.Api.Common;
-using System.Threading.Tasks;
 using ServiceBusExample.Application.Business.Domain.Articles.Commands;
 
-namespace ServiceBusExample.Api.Controllers
+namespace ServiceBusExample.Api.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Produces("application/json")]
@@ -13,7 +13,7 @@ namespace ServiceBusExample.Api.Controllers
     public class ArticlesController : ApiControllerBase
     {
         [HttpPost]
-        [Route("create")]
+        [Route("")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

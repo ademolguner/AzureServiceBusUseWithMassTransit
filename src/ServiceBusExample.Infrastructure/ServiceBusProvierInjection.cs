@@ -57,7 +57,6 @@ namespace ServiceBusExample.Infrastructure
                     x.Consumer<LikeConsumer>();
                     x.Consumer<ArticleDeleteConsumer>();
                     x.Consumer<CategoryUpdateConsumer>();
-
             */
             _consumerTypes = allTypes
                .Select(t => (Class: t, Attribute: t.GetCustomAttribute<MessageConsumerAttribute>(false)))
@@ -99,7 +98,7 @@ namespace ServiceBusExample.Infrastructure
 
                     cfgQue.ConfigureConsumer(ctx, item.Class);
 
-                    //Circuit Breaker Kullanımı
+                    //Use Circuit Breaker
                     cfgQue.UseCircuitBreaker(cb =>
                     {
                         cb.TripThreshold = 15;
@@ -151,7 +150,7 @@ namespace ServiceBusExample.Infrastructure
 
                             cfgQue.ConfigureConsumer(ctx, item.Class);
 
-                            //Circuit Breaker Kullanımı
+                            //Use Circuit Breaker
                             cfgQue.UseCircuitBreaker(cb =>
                               {
                                   cb.TripThreshold = 15;
@@ -159,7 +158,7 @@ namespace ServiceBusExample.Infrastructure
                                   cb.ResetInterval = TimeSpan.FromMinutes(5);
                               });
 
-                            //3. Rate Limiter Kullanımı
+                            //Use Rate Limiter
                             cfgQue.UseRateLimit(20, TimeSpan.FromSeconds(5));
                         });
                         break;

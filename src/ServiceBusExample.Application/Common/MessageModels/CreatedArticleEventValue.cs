@@ -3,10 +3,11 @@ using ServiceBusExample.Domain.Extensions;
 using ServiceBusExample.Domain.Models;
 using System;
 using System.Collections.Generic;
+using ServiceBusExample.Domain.Enums;
 
 namespace ServiceBusExample.Application.Common.MessageModels
 {
-    [MessageName(Domain.Enums.MessageTypes.Topic, MessageConsts.ArticleCreate)]
+    [MessageName(MessageTypes.Topic, MessageConsts.ArticleCreate)]
     public class CreatedArticleEventValue : MessageFilteredBase<CreatedArticleEventValues>
     {
         public Guid Id { get; set; } = Guid.NewGuid();

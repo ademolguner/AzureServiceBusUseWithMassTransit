@@ -2,7 +2,8 @@
 
 namespace ServiceBusExample.Domain.Interfaces
 {
-    public interface IMessageFiltered<TFilter> where TFilter : class, new()
+    public interface IMessageFiltered<in TFilter> 
+        where TFilter : class, new()
     {
         Dictionary<string, string> GetFiltered(TFilter value);
     }
